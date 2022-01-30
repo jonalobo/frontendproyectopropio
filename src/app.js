@@ -22,7 +22,7 @@ btn.addEventListener('click', (e)=>{
 
 function modal(marca, venceGarantia, consola) {
         const modalHtml = `<!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
           Ver estado
         </button>
         
@@ -32,7 +32,7 @@ function modal(marca, venceGarantia, consola) {
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Información de garantía</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-dark" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
               <table>
