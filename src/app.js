@@ -9,6 +9,7 @@ btn.addEventListener('click', (e)=>{
     e.preventDefault()
     if (validarSerie(serie.value)) {
         console.log('arranca');
+        spiner()
         fetch(`${URL}${serie.value}`)
             .then(res=>res.json())
             .then((data)=>{
@@ -89,4 +90,19 @@ function manejoRespuesta(respuesta){
             modal(marca, venceGarantia, consola)
         });
     }
+}
+
+
+function spiner() {
+    const spiner = document.createElement('div')
+    spiner.classList.add('sk-chase')
+    spiner.innerHTML = `
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    `
+    scripting.appendChild(spiner)
 }
