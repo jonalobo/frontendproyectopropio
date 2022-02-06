@@ -8,7 +8,6 @@ const formulario = document.getElementById('form')
 btn.addEventListener('click', (e)=>{
     e.preventDefault()
     if (validarSerie(serie.value)) {
-        console.log('arranca');
         spiner()
         fetch(`${URL}${serie.value}`)
             .then(res=>res.json())
@@ -20,7 +19,7 @@ btn.addEventListener('click', (e)=>{
     }
 })
 
-function modal(marca, venceGarantia, consola) {
+function modal(marca, venceGarantia, consola, fechaDeVenta, nserie) {
         const modalHtml = `<!-- Button trigger modal -->
         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
           Ver estado
@@ -35,18 +34,21 @@ function modal(marca, venceGarantia, consola) {
                 <button type="button" class="btn-close btn-dark" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-              <table>
-              <tr>
-                  <th>Marca</th>
-                  <th>Categoría</th>
-                  <th>Garantía</th>
-              </tr>
-              <tr>
-                  <td>${marca}</td>
-                  <td>${consola}</td>
-                  <td>${venceGarantia}</td>
-              </tr>
-          </table>
+              <div class="card" style="width: 100%;">
+              <img src=${url} class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Garantía</h5>
+                <p class="card-text">La serie del equipo ingresada nos presenta los siguientes datos.</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Marca del equipo: <strong>${marca}</strong></li>
+                <li class="list-group-item">Número de serie: <strong>${nserie}</strong></li>
+                <li class="list-group-item">Tecnología: <strong>${consola}</strong></li>
+                <li class="list-group-item">Venta del equipo: <strong>${fechaDeVenta}</strong></li>
+                <li class="list-group-item">Vencimiento de la garantía: <strong>${venceGarantia}</strong></li>
+              </ul>
+              
+            </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -86,8 +88,8 @@ function manejoMensaje(respuesta,serie) {
 function manejoRespuesta(respuesta){
     if (respuesta.length != 0) {
         respuesta.forEach(elemento => {
-            const { marca, venceGarantia, consola }= elemento
-            modal(marca, venceGarantia, consola)
+            const { marca, venceGarantia, consola, fechaDeVenta, serie }= elemento
+            modal(marca, venceGarantia, consola, fechaDeVenta, serie)
         });
     }
 }
